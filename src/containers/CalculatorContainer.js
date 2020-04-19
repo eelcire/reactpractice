@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Button from '../components/Button';
 import Output from '../components/Output';
+import '../styles/container.css';
 
 export default function CalculatorContainer() {
   const [prevInput, setPrevInput] = useState('');
@@ -40,6 +41,9 @@ export default function CalculatorContainer() {
       setInput(math[operator](prevInput, input));
       console.log('hello');
     } else if (value === 'AC') {
+      setInput('0');
+      setPrevInput('0');
+      setOperator('0');
     } else {
       if (input === '0') {
         setInput(value);
@@ -86,14 +90,14 @@ export default function CalculatorContainer() {
       <Button
         onClick={onButtonClick}
         key={button}
-        className="number"
+        className="number button"
         text={button}
       />
     ) : (
       <Button
         onClick={onButtonClick}
         key={button}
-        className="string"
+        className="string button"
         text={button}
       />
     );
