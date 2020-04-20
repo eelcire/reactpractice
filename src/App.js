@@ -6,24 +6,27 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get('http://jsonplaceholder.typicode.com/todos');
+      const res = await axios('http://jsonplaceholder.typicode.com/photos');
 
       setData(res.data);
     };
     fetchData();
   }, []);
 
-  console.log(data);
-
   const renderData = !data
     ? null
     : data.map((item) => {
         return (
-          <tr>
+          <tr key={item.id}>
             <td>{item.id}</td>
-            <td>{item.userId}</td>
+            <td>{item.albumId}</td>
             <td>{item.title}</td>
-            <td>{item.completed}</td>
+            <td>
+              <a href={item.url}>Click Me!</a>
+            </td>
+            <td>
+              <img src={item.thumbnailUrl}></img>
+            </td>
           </tr>
         );
       });
@@ -32,10 +35,13 @@ function App() {
     <div className="App">
       <table>
         <thead>
-          <th>ID</th>
-          <th>User ID</th>
-          <th>Title</th>
-          <th>Completed</th>
+          <tr>
+            <th>ID</th>
+            <th>Album ID</th>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Image</th>
+          </tr>
         </thead>
         <tbody>{renderData}</tbody>
       </table>
