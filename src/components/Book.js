@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default function Book(props) {
-  console.log(props.location);
-  return <div>book</div>;
+export class Book extends Component {
+  render() {
+    return <div>{this.props.itemBody}</div>;
+  }
 }
+
+export default Book;
